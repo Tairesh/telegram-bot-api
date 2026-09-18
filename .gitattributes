@@ -7,3 +7,6 @@
 /.php-cs-fixer.dist.php export-ignore
 /CONTRIBUTING.md export-ignore
 /AGENTS.md export-ignore
+/Dockerfile export-ignore
+/compose.yaml export-ignore
+/Makefile export-ignore

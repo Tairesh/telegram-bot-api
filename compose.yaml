@@ -1,0 +1,11 @@
+services:
+  php:
+    build: .
+    working_dir: /app
+    user: "1000:1000"
+    volumes:
+      - .:/app
+      - composer-cache:/tmp/composer
+
+volumes:
+  composer-cache:
