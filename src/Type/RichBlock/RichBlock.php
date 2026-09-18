@@ -18,14 +18,17 @@ use Luzrain\TelegramBotApi\Type;
  * @see RichBlockAnchor
  * @see RichBlockList
  * @see RichBlockBlockQuotation
+ * @see RichBlockExpandableBlockQuotation
  * @see RichBlockPullQuotation
  * @see RichBlockCollage
  * @see RichBlockSlideshow
  * @see RichBlockTable
  * @see RichBlockDetails
  * @see RichBlockMap
+ * @see RichBlockButtons
  * @see RichBlockAnimation
  * @see RichBlockAudio
+ * @see RichBlockDocument
  * @see RichBlockPhoto
  * @see RichBlockVideo
  * @see RichBlockVoiceNote
@@ -59,14 +62,17 @@ readonly class RichBlock extends Type
             RichBlockAnchor::TYPE => RichBlockAnchor::fromArray($data),
             RichBlockList::TYPE => RichBlockList::fromArray($data),
             RichBlockBlockQuotation::TYPE => RichBlockBlockQuotation::fromArray($data),
+            RichBlockExpandableBlockQuotation::TYPE => RichBlockExpandableBlockQuotation::fromArray($data),
             RichBlockPullQuotation::TYPE => RichBlockPullQuotation::fromArray($data),
             RichBlockCollage::TYPE => RichBlockCollage::fromArray($data),
             RichBlockSlideshow::TYPE => RichBlockSlideshow::fromArray($data),
             RichBlockTable::TYPE => RichBlockTable::fromArray($data),
             RichBlockDetails::TYPE => RichBlockDetails::fromArray($data),
             RichBlockMap::TYPE => RichBlockMap::fromArray($data),
+            RichBlockButtons::TYPE => RichBlockButtons::fromArray($data),
             RichBlockAnimation::TYPE => RichBlockAnimation::fromArray($data),
             RichBlockAudio::TYPE => RichBlockAudio::fromArray($data),
+            RichBlockDocument::TYPE => RichBlockDocument::fromArray($data),
             RichBlockPhoto::TYPE => RichBlockPhoto::fromArray($data),
             RichBlockVideo::TYPE => RichBlockVideo::fromArray($data),
             RichBlockVoiceNote::TYPE => RichBlockVoiceNote::fromArray($data),

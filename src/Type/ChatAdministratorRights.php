@@ -100,6 +100,11 @@ final readonly class ChatAdministratorRights extends Type
          * If omitted defaults to the value of can_pin_messages.
          */
         public bool|null $canManageTags = null,
+
+        /**
+         * True, if the administrator can manage chat welcome messages or directly send them in the case of bots
+         */
+        public bool|null $canSendWelcomeMessages = null,
     ) {
     }
 }

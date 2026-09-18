@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Luzrain\TelegramBotApi\Type;
 
+use Luzrain\TelegramBotApi\Internal\ArrayType;
 use Luzrain\TelegramBotApi\Type;
 
 /**
@@ -55,6 +56,25 @@ final readonly class UniqueGiftInfo extends Type
          * Optional. Point in time (Unix timestamp) when the gift can be transferred. If it is in the past, then the gift can be transferred now.
          */
         public int|null $nextTransferDate = null,
+
+        /**
+         * Optional. Text of the message that was added to the gift
+         */
+        public string|null $text = null,
+
+        /**
+         * Optional. Special entities that appear in the text
+         *
+         * @var list<MessageEntity>|null
+         */
+        #[ArrayType(MessageEntity::class)]
+        public array|null $entities = null,
+
+        /**
+         * Optional. True, if the sender and gift text are shown only to the gift receiver;
+         * otherwise, everyone will be able to see them
+         */
+        public true|null $isPrivate = null,
     ) {
     }
 }

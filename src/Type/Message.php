@@ -19,7 +19,7 @@ final readonly class Message extends MaybeInaccessibleMessage
 {
     protected function __construct(
         /**
-         * Unique message identifier inside this chat. In specific instances (e.g., message containing a video sent to a big chat),
+         * Unique message identifier inside this chat; 0 for ephemeral messages. In specific instances (e.g., message containing a video sent to a big chat),
          * the server might automatically schedule a message instead of sending it immediately.
          * In such cases, this field will be 0 and the relevant message will be unusable until it is actually sent.
          */
@@ -106,6 +106,7 @@ final readonly class Message extends MaybeInaccessibleMessage
         /**
          * Optional. For replies in the same chat and message thread, the original message.
          * Note that the Message object in this field will not contain further reply_to_message fields even if it itself is a reply.
+         * If the message is a reply to an ephemeral message, then this field may be omitted.
          */
         public Message|null $replyToMessage = null,
 
@@ -632,6 +633,32 @@ final readonly class Message extends MaybeInaccessibleMessage
          * Optional. Inline keyboard attached to the message. login_url buttons are represented as ordinary url buttons.
          */
         public InlineKeyboardMarkup|null $replyMarkup = null,
+
+        /**
+         * Optional. For ephemeral messages, the user who received the message
+         */
+        public User|null $receiverUser = null,
+
+        /**
+         * Optional. For ephemeral messages, identifier of the ephemeral message inside this chat.
+         * The identifier may be reused for another ephemeral message after the message is deleted or expires.
+         */
+        public int|null $ephemeralMessageId = null,
+
+        /**
+         * Optional. Service message: chat or bot added to a Community
+         */
+        public CommunityChatAdded|null $communityChatAdded = null,
+
+        /**
+         * Optional. Service message: chat or bot removed from a Community
+         */
+        public CommunityChatRemoved|null $communityChatRemoved = null,
+
+        /**
+         * Optional. Service message: chat was joined by a user from a Community
+         */
+        public CommunityChatJoined|null $communityChatJoined = null,
     ) {
         parent::__construct($this->date);
     }

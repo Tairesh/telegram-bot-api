@@ -43,6 +43,8 @@ final readonly class Update extends Type
         'chat_boost',
         'removed_chat_boost',
         'managed_bot',
+        'subscription',
+        'stopped_message_generation',
     ];
 
     protected function __construct(
@@ -189,6 +191,16 @@ final readonly class Update extends Type
          * Optional. A new bot was created to be managed by the bot, or token or owner of a managed bot was changed
          */
         public ManagedBotUpdated|null $managedBot = null,
+
+        /**
+         * Optional. User payment subscription has changed
+         */
+        public BotSubscriptionUpdated|null $subscription = null,
+
+        /**
+         * Optional. A user asked the bot to stop the generation of a message
+         */
+        public MessageGenerationStopped|null $stoppedMessageGeneration = null,
     ) {
     }
 

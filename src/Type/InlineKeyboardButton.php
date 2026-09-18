@@ -52,6 +52,7 @@ final readonly class InlineKeyboardButton extends Type
 
         /**
          * Optional. An HTTPS URL used to automatically authorize the user. Can be used as a replacement for the Telegram Login Widget.
+         * Not supported for ephemeral messages.
          */
         public LoginUrl|null $loginUrl = null,
 
@@ -96,6 +97,11 @@ final readonly class InlineKeyboardButton extends Type
          * NOTE: This type of button must always be the first button in the first row and can only be used in invoice messages.
          */
         public bool|null $pay = null,
+
+        /**
+         * Optional. If set, then the button is disabled and does nothing
+         */
+        public DisabledButton|null $disabled = null,
     ) {
     }
 }

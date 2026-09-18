@@ -1,0 +1,7 @@
+{
+  "update_id": 900000004,
+  "stopped_message_generation": {
+    "chat": {"id": 14612111, "type": "private", "first_name": "Anton"},
+    "draft_id": 99
+  }
+}

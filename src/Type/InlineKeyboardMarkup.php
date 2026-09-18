@@ -23,6 +23,12 @@ final readonly class InlineKeyboardMarkup extends Type
          */
         #[ArrayOfArayType(InlineKeyboardButton::class)]
         InlineKeyboardButtonArrayBuilder|array $inlineKeyboard,
+
+        /**
+         * Optional. Pass True if the reply interface must be shown to the user, as if they had manually selected the bot's message
+         * and tapped 'Reply'. The value of the field can't be changed when the inline keyboard is edited.
+         */
+        public bool|null $forceReply = null,
     ) {
         $this->inlineKeyboard = \is_array($inlineKeyboard) ? $inlineKeyboard : $inlineKeyboard->toArray();
     }
