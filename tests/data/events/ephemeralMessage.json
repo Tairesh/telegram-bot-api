@@ -1,0 +1,12 @@
+{
+  "update_id": 900000001,
+  "message": {
+    "message_id": 0,
+    "ephemeral_message_id": 55,
+    "date": 1756000000,
+    "chat": {"id": 14612111, "type": "supergroup", "title": "Test group"},
+    "from": {"id": 123456789, "is_bot": false, "first_name": "Anton"},
+    "receiver_user": {"id": 987654321, "is_bot": false, "first_name": "Receiver"},
+    "text": "ephemeral hello"
+  }
+}

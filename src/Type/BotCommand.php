@@ -21,6 +21,11 @@ final readonly class BotCommand extends Type
          * Description of the command; 1-256 characters
          */
         public string $description,
+
+        /**
+         * Optional. True, if the command sends an ephemeral message, which can be seen only by the sender of the message and the bot
+         */
+        public bool|null $isEphemeral = null,
     ) {
     }
 }

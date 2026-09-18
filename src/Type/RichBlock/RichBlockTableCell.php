@@ -13,7 +13,7 @@ use Luzrain\TelegramBotApi\Type\RichText\RichText;
  */
 final readonly class RichBlockTableCell extends Type
 {
-    protected function __construct(
+    public function __construct(
         /**
          * Horizontal cell content alignment. Currently, must be one of "left", "center", or "right".
          */

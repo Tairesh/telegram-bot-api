@@ -11,7 +11,7 @@ use Luzrain\TelegramBotApi\Type;
  */
 final readonly class Location extends Type
 {
-    protected function __construct(
+    public function __construct(
         /**
          * Longitude as defined by the sender
          */

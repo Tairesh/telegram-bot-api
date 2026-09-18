@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Luzrain\TelegramBotApi\Method;
 
 use Luzrain\TelegramBotApi\Method;
+use Luzrain\TelegramBotApi\Type\EphemeralMessageParameters;
 use Luzrain\TelegramBotApi\Type\ForceReply;
 use Luzrain\TelegramBotApi\Type\InlineKeyboardMarkup;
 use Luzrain\TelegramBotApi\Type\InputFile;
@@ -122,6 +123,11 @@ final class SendDocument extends Method
          * instructions to remove a reply keyboard or to force a reply from the user.
          */
         protected InlineKeyboardMarkup|ReplyKeyboardMarkup|ReplyKeyboardRemove|ForceReply|null $replyMarkup = null,
+
+        /**
+         * A JSON-serialized object containing the parameters of the ephemeral message to send
+         */
+        protected EphemeralMessageParameters|null $ephemeralMessageParameters = null,
     ) {
     }
 }

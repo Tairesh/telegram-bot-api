@@ -41,6 +41,11 @@ final readonly class RichBlockTable extends RichBlock
          */
         #[RichTextType]
         public RichText|string|array|null $caption = null,
+
+        /**
+         * Optional. True, if table cells have smaller indents
+         */
+        public true|null $isCompact = null,
     ) {
         parent::__construct(self::TYPE);
     }

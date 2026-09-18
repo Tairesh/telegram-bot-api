@@ -56,6 +56,12 @@ final readonly class ReplyKeyboardMarkup extends Type
          * Other users in the group don't see the keyboard.
          */
         public bool|null $selective = null,
+
+        /**
+         * Optional. Pass True if the reply interface must be shown to the user, as if they had manually selected the bot's message
+         * and tapped 'Reply'
+         */
+        public bool|null $forceReply = null,
     ) {
         $this->keyboard = \is_array($keyboard) ? $keyboard : $keyboard->toArray();
     }

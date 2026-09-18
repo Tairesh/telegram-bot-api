@@ -8,12 +8,8 @@ use Luzrain\TelegramBotApi\Exception\TelegramApiException;
 use Luzrain\TelegramBotApi\Exception\TelegramApiServerException;
 use Luzrain\TelegramBotApi\Internal\HttpClient\RequestBuilder;
 use Luzrain\TelegramBotApi\Method\GetFile;
-use Luzrain\TelegramBotApi\Method\SendMediaGroup;
-use Luzrain\TelegramBotApi\Method\SendPaidMedia;
 use Luzrain\TelegramBotApi\Type\File;
 use Luzrain\TelegramBotApi\Type\InputFile;
-use Luzrain\TelegramBotApi\Type\InputMedia;
-use Luzrain\TelegramBotApi\Type\InputPaidMedia;
 use Luzrain\TelegramBotApi\Type\ResponseParameters;
 use Psr\Http\Client\ClientExceptionInterface;
 use Psr\Http\Client\ClientInterface;
@@ -58,42 +54,36 @@ final readonly class BotApi
         $multiparts = [];
         $files = [];
 
-        /** @psalm-suppress UndefinedPropertyFetch */
-        $extractFiles = static function (InputMedia|InputPaidMedia $inputMedia): array {
-            $files = [];
-            if (\property_exists($inputMedia, 'media') && $inputMedia->media instanceof InputFile) {
-                $files[] = $inputMedia->media;
+        /**
+         * Collects every InputFile reachable from a method parameter graph.
+         *
+         * Keyed by unique name so that one InputFile instance referenced from two places
+         * is streamed once. Note that get_object_vars() runs in BotApi scope and therefore
+         * sees public properties only — every Type property is public by convention.
+         *
+         * @param array<string, InputFile> $files
+         */
+        $collectFiles = static function (mixed $value, array &$files) use (&$collectFiles): void {
+            if ($value instanceof InputFile) {
+                $files[$value->getUniqueName()] = $value;
+            } elseif (\is_array($value)) {
+                foreach ($value as $item) {
+                    $collectFiles($item, $files);
+                }
+            } elseif ($value instanceof Type) {
+                foreach (\get_object_vars($value) as $property) {
+                    $collectFiles($property, $files);
+                }
             }
-            if (\property_exists($inputMedia, 'thumbnail') && $inputMedia->thumbnail instanceof InputFile) {
-                $files[] = $inputMedia->thumbnail;
-            }
-            if (\property_exists($inputMedia, 'photo') && $inputMedia->photo instanceof InputFile) {
-                $files[] = $inputMedia->photo;
-            }
-            if (\property_exists($inputMedia, 'cover') && $inputMedia->cover instanceof InputFile) {
-                $files[] = $inputMedia->cover;
-            }
-            return $files;
         };
 
         foreach ($method->getIterator() as $name => $value) {
             if ($value instanceof InputFile) {
                 $multiparts[$name] = $value->getAttachPath();
-                $files[] = $value;
+                $files[$value->getUniqueName()] = $value;
             } else {
                 $multiparts[$name] = \is_scalar($value) ? $value : \json_encode($value, JSON_UNESCAPED_UNICODE);
-            }
-
-            if ($value instanceof InputMedia || $value instanceof InputPaidMedia) {
-                $files = [...$files, ...$extractFiles($value)];
-            }
-
-            /** @psalm-suppress TypeDoesNotContainType */
-            if ($name === 'media' && \is_array($value) && ($method instanceof SendMediaGroup || $method instanceof SendPaidMedia)) {
-                /** @var array<InputMedia|InputPaidMedia> $value */
-                foreach ($value as $media) {
-                    $files = [...$files, ...$extractFiles($media)];
-                }
+                $collectFiles($value, $files);
             }
         }
 
