@@ -146,6 +146,13 @@ $response = $bot->call(new Method\SendDocument(
  */
 ```
 
+You can pass `InputFile` where it sits inside another object:
+
+* `InputSticker` for `CreateNewStickerSet`, `AddStickerToSet` and `ReplaceStickerInSet`
+* `InputStoryContentPhoto` and `InputStoryContentVideo` for `PostStory` and `EditStory`
+* `InputProfilePhotoStatic` and `InputProfilePhotoAnimated` for `SetMyProfilePhoto` and `SetBusinessAccountProfilePhoto`
+* the media blocks of `InputRichMessage` for `SendRichMessage` and `SendRichMessageDraft`
+
 #### Send Media Group
 
 ```php
