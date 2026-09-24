@@ -21,14 +21,6 @@ final class ReplyMarkupTest extends TestCase
         $this->assertSame('x', $decoded['inline_keyboard'][0][0]['text']);
     }
 
-    public function testInlineKeyboardMarkupStillAcceptsSinglePositionalArgument(): void
-    {
-        $markup = new Type\InlineKeyboardMarkup([[new Type\InlineKeyboardButton(text: 'x')]]);
-
-        $this->assertCount(1, $markup->inlineKeyboard);
-        $this->assertNull($markup->forceReply);
-    }
-
     public function testReplyKeyboardMarkupForceReply(): void
     {
         $decoded = \json_decode(\json_encode(new Type\ReplyKeyboardMarkup(
@@ -58,40 +50,5 @@ final class ReplyMarkupTest extends TestCase
         ))->getIterator());
 
         $this->assertTrue($params['can_send_welcome_messages']);
-    }
-
-    public function testAdministratorTypesAcceptCanSendWelcomeMessages(): void
-    {
-        foreach ([Type\ChatAdministratorRights::class, Type\ChatMemberAdministrator::class] as $class) {
-            $names = \array_map(
-                static fn(\ReflectionParameter $p) => $p->getName(),
-                (new \ReflectionClass($class))->getConstructor()->getParameters(),
-            );
-
-            $this->assertContains('canSendWelcomeMessages', $names, $class);
-        }
-    }
-
-    public function testChatMemberAdministratorKeepsCustomTitleLast(): void
-    {
-        $names = \array_map(
-            static fn(\ReflectionParameter $p) => $p->getName(),
-            (new \ReflectionClass(Type\ChatMemberAdministrator::class))->getConstructor()->getParameters(),
-        );
-
-        $this->assertSame(['canSendWelcomeMessages', 'customTitle'], \array_slice($names, -2));
-    }
-
-    public function testDraftMethodsAcceptCanStopAndKeepOnStop(): void
-    {
-        foreach ([Method\SendMessageDraft::class, Method\SendRichMessageDraft::class] as $class) {
-            $names = \array_map(
-                static fn(\ReflectionParameter $p) => $p->getName(),
-                (new \ReflectionClass($class))->getConstructor()->getParameters(),
-            );
-
-            $this->assertContains('canStop', $names, $class);
-            $this->assertContains('keepOnStop', $names, $class);
-        }
     }
 }

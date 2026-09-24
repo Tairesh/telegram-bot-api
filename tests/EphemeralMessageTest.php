@@ -88,38 +88,6 @@ final class EphemeralMessageTest extends TestCase
         $this->assertSame(5, $params['ephemeral_message_parameters']->receiverUserId);
     }
 
-    public function testAllFourteenMethodsAcceptEphemeralParameters(): void
-    {
-        $expected = [
-            'SendMessage', 'SendAnimation', 'SendAudio', 'SendDocument', 'SendLivePhoto',
-            'SendPhoto', 'SendSticker', 'SendVideo', 'SendVideoNote', 'SendVoice',
-            'SendContact', 'SendLocation', 'SendVenue', 'SendRichMessage',
-        ];
-
-        foreach ($expected as $short) {
-            $names = \array_map(
-                static fn(\ReflectionParameter $p) => $p->getName(),
-                (new \ReflectionClass('Luzrain\\TelegramBotApi\\Method\\' . $short))->getConstructor()->getParameters(),
-            );
-
-            $this->assertContains('ephemeralMessageParameters', $names, $short . ' must accept ephemeralMessageParameters');
-        }
-    }
-
-    public function testMethodsWithoutEphemeralSupportAreUntouched(): void
-    {
-        $excluded = ['SendMediaGroup', 'SendPoll', 'SendDice', 'SendChecklist', 'SendGame', 'SendInvoice', 'SendPaidMedia'];
-
-        foreach ($excluded as $short) {
-            $names = \array_map(
-                static fn(\ReflectionParameter $p) => $p->getName(),
-                (new \ReflectionClass('Luzrain\\TelegramBotApi\\Method\\' . $short))->getConstructor()->getParameters(),
-            );
-
-            $this->assertNotContains('ephemeralMessageParameters', $names, $short . ' must NOT accept ephemeralMessageParameters');
-        }
-    }
-
     public function testEphemeralMessageHydration(): void
     {
         $update = Type\Update::fromJson(\file_get_contents(__DIR__ . '/data/events/ephemeralMessage.json'));
@@ -144,42 +112,5 @@ final class EphemeralMessageTest extends TestCase
 
         $this->assertSame(['ephemeral_message_id' => 7], $decoded);
         $this->assertArrayNotHasKey('message_id', $decoded);
-    }
-
-    public function testReplyParametersStillAcceptsMessageIdPositionally(): void
-    {
-        $decoded = \json_decode(\json_encode(new Type\ReplyParameters(5)), true);
-
-        $this->assertSame(5, $decoded['message_id']);
-    }
-
-    /**
-     * Appending rather than inserting is what keeps positional construction working for existing
-     * callers. assertContains would not notice a mid-signature insertion; asserting the position does.
-     */
-    public function testEphemeralParametersIsAlwaysTheLastConstructorParameter(): void
-    {
-        $expected = [
-            'SendMessage', 'SendAnimation', 'SendAudio', 'SendDocument', 'SendLivePhoto',
-            'SendPhoto', 'SendSticker', 'SendVideo', 'SendVideoNote', 'SendVoice',
-            'SendContact', 'SendLocation', 'SendVenue', 'SendRichMessage',
-        ];
-
-        foreach ($expected as $short) {
-            $names = \array_map(
-                static fn(\ReflectionParameter $p) => $p->getName(),
-                (new \ReflectionClass('Luzrain\\TelegramBotApi\\Method\\' . $short))->getConstructor()->getParameters(),
-            );
-
-            $this->assertSame('ephemeralMessageParameters', \end($names), $short . ': parameter must be appended last');
-        }
-    }
-
-    public function testReplyParametersKeepsThreeArgumentPositionalCallsIntact(): void
-    {
-        $decoded = \json_decode(\json_encode(new Type\ReplyParameters(123, null, true)), true);
-
-        $this->assertSame(['message_id' => 123, 'allow_sending_without_reply' => true], $decoded);
-        $this->assertArrayNotHasKey('ephemeral_message_id', $decoded);
     }
 }

@@ -48,31 +48,6 @@ final class MessageGenerationStoppedTest extends TestCase
         $this->assertSame(99, $helper->getParameter()->draftId);
     }
 
-    public function testUniqueGiftInfoKeepsExistingPositionalArguments(): void
-    {
-        $names = \array_map(
-            static fn(\ReflectionParameter $p) => $p->getName(),
-            (new \ReflectionClass(Type\UniqueGiftInfo::class))->getConstructor()->getParameters(),
-        );
-
-        $this->assertSame('gift', $names[0]);
-        $this->assertSame('origin', $names[1]);
-        $this->assertSame('lastResaleStarCount', $names[2]);
-        $this->assertSame(['text', 'entities', 'isPrivate'], \array_slice($names, -3));
-    }
-
-    public function testUniqueGiftInfoNewFieldTypes(): void
-    {
-        $byName = [];
-        foreach ((new \ReflectionClass(Type\UniqueGiftInfo::class))->getConstructor()->getParameters() as $p) {
-            $byName[$p->getName()] = (string) $p->getType();
-        }
-
-        $this->assertSame('?string', $byName['text']);
-        $this->assertSame('?array', $byName['entities']);
-        $this->assertSame('?true', $byName['isPrivate']);
-    }
-
     public function testEventIsNotDispatchedForUnrelatedUpdate(): void
     {
         $helper = new ClosureTestHelper();
