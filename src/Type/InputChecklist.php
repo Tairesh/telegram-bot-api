@@ -21,9 +21,9 @@ final readonly class InputChecklist extends Type
         /**
          * List of 1-30 tasks in the checklist
          *
-         * @var list<ChecklistTask>
+         * @var list<InputChecklistTask>
          */
-        #[ArrayType(ChecklistTask::class)]
+        #[ArrayType(InputChecklistTask::class)]
         public array $tasks,
 
         /**

@@ -20,7 +20,7 @@ final readonly class RichBlockMap extends RichBlock
         public Location $location,
 
         /**
-         * Map zoom level; 13-20
+         * Map zoom level
          */
         public int $zoom,
 

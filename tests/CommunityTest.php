@@ -66,6 +66,7 @@ final class CommunityTest extends TestCase
                 'limited_gifts' => true,
                 'unique_gifts' => true,
                 'premium_subscription' => false,
+                'gifts_from_channels' => false,
             ],
             'community' => ['id' => 9, 'name' => 'Nine'],
         ]);

@@ -14,7 +14,7 @@ final readonly class InputRichMessageContent extends Type implements InputMessag
 {
     public function __construct(
         /**
-         * The message to be sent
+         * The message to be sent. Only previously uploaded files may be used in the message.
          */
         public InputRichMessage $richMessage,
     ) {

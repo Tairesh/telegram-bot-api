@@ -29,6 +29,16 @@ final readonly class InlineQueryResultDocument extends InlineQueryResult
         public string $title,
 
         /**
+         * A valid URL for the file
+         */
+        public string $documentUrl,
+
+        /**
+         * MIME type of the content of the file, either "application/pdf" or "application/zip"
+         */
+        public string $mimeType,
+
+        /**
          * Optional. Caption of the document to be sent, 0-1024 characters after entities parsing
          */
         public string|null $caption = null,
@@ -47,16 +57,6 @@ final readonly class InlineQueryResultDocument extends InlineQueryResult
          */
         #[ArrayType(MessageEntity::class)]
         public array|null $captionEntities = null,
-
-        /**
-         * A valid URL for the file
-         */
-        public string|null $documentUrl = null,
-
-        /**
-         * MIME type of the content of the file, either "application/pdf" or "application/zip"
-         */
-        public string|null $mimeType = null,
 
         /**
          * Optional. Short description of the result

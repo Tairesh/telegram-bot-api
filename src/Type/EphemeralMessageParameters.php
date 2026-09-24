@@ -15,6 +15,8 @@ final readonly class EphemeralMessageParameters extends Type
         /**
          * Identifier of the user who will receive the message. It is not guaranteed that the user will receive the message,
          * especially if they are offline. See here for more details.
+         *
+         * @see https://core.telegram.org/bots/api#ephemeral-messages-and-commands
          */
         public int $receiverUserId,
 
