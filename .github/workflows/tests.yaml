@@ -15,7 +15,7 @@ jobs:
           php-version: '8.2'
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v7
 
       - name: Create var dir
         run: mkdir var
