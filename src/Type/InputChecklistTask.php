@@ -12,7 +12,7 @@ use Luzrain\TelegramBotApi\Type;
  */
 final readonly class InputChecklistTask extends Type
 {
-    protected function __construct(
+    public function __construct(
         /**
          * Unique identifier of the task; must be positive and unique among all task identifiers currently present in the checklist
          */

@@ -82,7 +82,7 @@ final readonly class InlineKeyboardButton extends Type
         /**
          * Optional. Description of the button that copies the specified text to the clipboard
          */
-        public CopyTextButton| null $copyText = null,
+        public CopyTextButton|null $copyText = null,
 
         /**
          * Optional. Description of the game that will be launched when the user presses the button.

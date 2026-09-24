@@ -21,18 +21,4 @@ readonly class InputStoryContent extends Type
         public string $type,
     ) {
     }
-
-    /**
-     * @psalm-suppress LessSpecificReturnStatement
-     * @psalm-suppress MoreSpecificReturnType
-     */
-    public static function fromArray(array $data): static
-    {
-        $instance = parent::fromArray($data);
-
-        return self::class !== static::class ? $instance : match ($instance->type) {
-            InputStoryContentPhoto::TYPE => InputStoryContentPhoto::fromArray($data),
-            InputStoryContentVideo::TYPE => InputStoryContentVideo::fromArray($data),
-        };
-    }
 }

@@ -12,7 +12,7 @@ use Luzrain\TelegramBotApi\Type;
  */
 final readonly class InputPollOption extends Type
 {
-    protected function __construct(
+    public function __construct(
         /**
          * Option text, 1-100 characters
          */

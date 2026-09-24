@@ -12,7 +12,7 @@ use Luzrain\TelegramBotApi\Type;
  */
 final readonly class InputChecklist extends Type
 {
-    protected function __construct(
+    public function __construct(
         /**
          * Title of the checklist; 1-255 characters after entities parsing
          */
@@ -21,9 +21,9 @@ final readonly class InputChecklist extends Type
         /**
          * List of 1-30 tasks in the checklist
          *
-         * @var list<ChecklistTask>
+         * @var list<InputChecklistTask>
          */
-        #[ArrayType(ChecklistTask::class)]
+        #[ArrayType(InputChecklistTask::class)]
         public array $tasks,
 
         /**

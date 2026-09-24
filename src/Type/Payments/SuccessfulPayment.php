@@ -45,7 +45,7 @@ final readonly class SuccessfulPayment extends Type
         /**
          * Optional. Expiration date of the subscription, in Unix time; for recurring payments only
          */
-        public string|null $subscriptionExpirationDate = null,
+        public int|null $subscriptionExpirationDate = null,
 
         /**
          * Optional. True, if the payment is a recurring payment for a subscription

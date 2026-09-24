@@ -11,7 +11,7 @@ final readonly class InputStoryContentVideo extends InputStoryContent
 {
     public const TYPE = 'video';
 
-    protected function __construct(
+    public function __construct(
         /**
          * The video to post as a story. The video must be of the size 720x1280, streamable, encoded with H.265 codec,
          * with key frames added each second in the MPEG4 format, and must not exceed 30 MB. The video can't be reused

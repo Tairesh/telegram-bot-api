@@ -19,6 +19,11 @@ final readonly class TextQuote extends Type
         public string $text,
 
         /**
+         * Approximate quote position in the original message in UTF-16 code units as specified by the sender
+         */
+        public int $position,
+
+        /**
          * Optional. Special entities that appear in the quote.
          * Currently, only bold, italic, underline, strikethrough, spoiler, custom_emoji, and date_time entities are kept in quotes.
          *
@@ -26,11 +31,6 @@ final readonly class TextQuote extends Type
          */
         #[ArrayType(MessageEntity::class)]
         public array|null $entities = null,
-
-        /**
-         * Approximate quote position in the original message in UTF-16 code units as specified by the sender
-         */
-        public int|null $position = null,
 
         /**
          * Optional. True, if the quote was chosen manually by the message sender. Otherwise, the quote was added automatically by the server.

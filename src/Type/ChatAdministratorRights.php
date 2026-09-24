@@ -58,17 +58,22 @@ final readonly class ChatAdministratorRights extends Type
         /**
          * True, if the administrator can post stories to the chat
          */
-        public bool|null $canPostStories = null,
+        public bool $canPostStories,
 
         /**
          * True, if the administrator can edit stories posted by other users, post stories to the chat page, pin chat stories, and access the chat's story archive
          */
-        public bool|null $canEditStories = null,
+        public bool $canEditStories,
 
         /**
          * True, if the administrator can delete stories posted by other users
          */
-        public bool|null $canDeleteStories = null,
+        public bool $canDeleteStories,
+
+        /**
+         * True, if the administrator can manage chat welcome messages or directly send them in the case of bots
+         */
+        public bool $canSendWelcomeMessages,
 
         /**
          * Optional. True, if the administrator can post messages in the channel, approve suggested posts, or access channel statistics; for channels only
@@ -85,7 +90,7 @@ final readonly class ChatAdministratorRights extends Type
          */
         public bool|null $canPinMessages = null,
 
-        /*
+        /**
          * Optional. True, if the user is allowed to create, rename, close, and reopen forum topics; for supergroups only
          */
         public bool|null $canManageTopics = null,
@@ -96,15 +101,9 @@ final readonly class ChatAdministratorRights extends Type
         public bool|null $canManageDirectMessages = null,
 
         /**
-         * Optional. True, if the administrator can edit the tags of regular members; for groups and supergroups only.
-         * If omitted defaults to the value of can_pin_messages.
+         * Optional. True, if the administrator can edit the tags of regular members; for groups and supergroups only
          */
         public bool|null $canManageTags = null,
-
-        /**
-         * True, if the administrator can manage chat welcome messages or directly send them in the case of bots
-         */
-        public bool|null $canSendWelcomeMessages = null,
     ) {
     }
 }

@@ -33,7 +33,7 @@ final class SendMessageDraft extends Method
         /**
          * Text of the message to be sent, 0-4096 characters after entities parsing. Pass an empty text to show a "Thinking…" placeholder.
          */
-        protected string $text,
+        protected string|null $text = null,
 
         /**
          * Unique identifier for the target message thread
