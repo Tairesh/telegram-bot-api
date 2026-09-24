@@ -30,6 +30,7 @@ use Luzrain\TelegramBotApi\Type;
  * @see RichTextHashtag
  * @see RichTextCashtag
  * @see RichTextBotCommand
+ * @see RichTextButton
  * @see RichTextAnchor
  * @see RichTextAnchorLink
  * @see RichTextReference
@@ -75,6 +76,7 @@ readonly class RichText extends Type
             RichTextHashtag::TYPE => RichTextHashtag::fromArray($data),
             RichTextCashtag::TYPE => RichTextCashtag::fromArray($data),
             RichTextBotCommand::TYPE => RichTextBotCommand::fromArray($data),
+            RichTextButton::TYPE => RichTextButton::fromArray($data),
             RichTextAnchor::TYPE => RichTextAnchor::fromArray($data),
             RichTextAnchorLink::TYPE => RichTextAnchorLink::fromArray($data),
             RichTextReference::TYPE => RichTextReference::fromArray($data),

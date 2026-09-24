@@ -13,7 +13,7 @@ use Luzrain\TelegramBotApi\Type\RichText\RichText;
  */
 final readonly class RichBlockCaption extends Type
 {
-    protected function __construct(
+    public function __construct(
         /**
          * Block caption
          *

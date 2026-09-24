@@ -294,6 +294,11 @@ final readonly class ChatFullInfo extends Type
          * Optional. The bot that processes join request queries in the chat. The field is only available to chat administrators.
          */
         public User|null $guardBot = null,
+
+        /**
+         * Optional. The Community to which the chat belongs
+         */
+        public Community|null $community = null,
     ) {
     }
 }

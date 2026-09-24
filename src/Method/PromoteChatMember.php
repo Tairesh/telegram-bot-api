@@ -115,6 +115,11 @@ final class PromoteChatMember extends Method
          * Pass True if the administrator can edit the tags of regular members; for groups and supergroups only
          */
         protected bool|null $canManageTags = null,
+
+        /**
+         * Pass True if the administrator can manage chat welcome messages or directly send them in the case of bots
+         */
+        protected bool|null $canSendWelcomeMessages = null,
     ) {
     }
 }
