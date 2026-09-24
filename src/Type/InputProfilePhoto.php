@@ -21,18 +21,4 @@ readonly class InputProfilePhoto extends Type
         public string $type,
     ) {
     }
-
-    /**
-     * @psalm-suppress LessSpecificReturnStatement
-     * @psalm-suppress MoreSpecificReturnType
-     */
-    public static function fromArray(array $data): static
-    {
-        $instance = parent::fromArray($data);
-
-        return self::class !== static::class ? $instance : match ($instance->type) {
-            InputProfilePhotoStatic::TYPE => InputProfilePhotoStatic::fromArray($data),
-            InputProfilePhotoAnimated::TYPE => InputProfilePhotoAnimated::fromArray($data),
-        };
-    }
 }

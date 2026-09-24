@@ -11,7 +11,7 @@ final readonly class InputStoryContentPhoto extends InputStoryContent
 {
     public const TYPE = 'photo';
 
-    protected function __construct(
+    public function __construct(
         /**
          * The photo to post as a story. The photo must be of the size 1080x1920 and must not exceed 10 MB.
          * The photo can't be reused and can only be uploaded as a new file, so you can pass "attach://<file_attach_name>"

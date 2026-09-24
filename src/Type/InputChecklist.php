@@ -12,7 +12,7 @@ use Luzrain\TelegramBotApi\Type;
  */
 final readonly class InputChecklist extends Type
 {
-    protected function __construct(
+    public function __construct(
         /**
          * Title of the checklist; 1-255 characters after entities parsing
          */
